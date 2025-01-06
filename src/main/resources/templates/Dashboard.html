@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Paisa Banking App</title>
+    <!-- Tailwind CSS with Daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+<!-- Header -->
+<header class="h-12 shadow-md">
+    <div id="headerContainer" class="flex justify-between items-center px-6 py-3">
+        <h1 class="text-2xl font-bold text-accent">Paisa</h1>
+        <nav>
+            <ul class="flex gap-8 text-lg font-medium">
+                <li>
+                    <a href="#dashboard"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#statements"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        View Statement
+                    </a>
+                </li>
+                <li>
+                    <a href="#payments"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        Payments
+                    </a>
+                </li>
+                <li>
+                    <a href="#services"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        Services
+                    </a>
+                </li>
+                <li>
+                    <a href="#cards"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        Cards
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow mt-12">
+    <div class="mainContainer flex gap-9">
+        <!-- Balance Container -->
+        <div id="balanceContainer" style="width: 45%" class="ml-12 flex flex-col">
+            <div class="card bg-base-100 shadow-lg p-6">
+                <h2 class="card-title text-xl font-semibold mb-4">Account Summary</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-lg font-medium">Your Balance:</span>
+                        <span class="text-lg font-bold text-green-500">Rs. [[${balance}]]</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-lg font-medium">Accrued Interest:</span>
+                        <span class="text-lg font-bold text-blue-500">Rs. [[${accuredInterest}]]</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-lg font-medium">Interest Rate:</span>
+                        <span class="text-lg font-bold text-orange-500">[[${interestRate}]]%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer Container -->
+        <div id="transferContainer" style="width: 45%" class="card bg-base-100 shadow-lg p-6">
+            <h2 class="card-title text-xl font-semibold mb-4">Transfer Funds</h2>
+            <p class="text-gray-600">Easily transfer funds to other accounts or pay bills directly from your account.</p>
+            <button class="btn btn-primary mt-4">Make a Transfer</button>
+        </div>
+    </div>
+
+    <div id="mainSecondContainer" class="flex gap-6 mt-8 ml-11">
+        <!-- Services Container -->
+        <div id="servicesContainer" style="width: 48%" class="card bg-base-100 shadow-lg p-6">
+            <h2 class="card-title text-xl font-semibold mb-4">Payment Services</h2>
+            <p class="text-gray-600 mb-6">Explore and use the various payment services available through this platform.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Service Card: Top Up -->
+                <div class="card bg-purple-100 shadow p-4 flex items-center justify-center cursor-pointer hover:shadow-lg">
+                    <div class="text-center">
+                        <div class="text-purple-500 text-3xl mb-2">
+                            <i class="fas fa-mobile-alt"></i> <!-- Example Icon -->
+                        </div>
+                        <span class="font-medium text-gray-800">Top Up</span>
+                    </div>
+                </div>
+
+                <!-- Service Card: Pay Electricity -->
+                <div class="card bg-blue-100 shadow p-4 flex items-center justify-center cursor-pointer hover:shadow-lg">
+                    <div class="text-center">
+                        <div class="text-blue-500 text-3xl mb-2">
+                            <i class="fas fa-bolt"></i> <!-- Example Icon -->
+                        </div>
+                        <span class="font-medium text-gray-800">Pay Electricity</span>
+                    </div>
+                </div>
+
+                <!-- Service Card: Pay Water -->
+                <div class="card bg-green-100 shadow p-4 flex items-center justify-center cursor-pointer hover:shadow-lg">
+                    <div class="text-center">
+                        <div class="text-green-500 text-3xl mb-2">
+                            <i class="fas fa-tint"></i> <!-- Example Icon -->
+                        </div>
+                        <span class="font-medium text-gray-800">Pay Water</span>
+                    </div>
+                </div>
+
+                <!-- Service Card: Load Wallet -->
+                <div class="card bg-yellow-100 shadow p-4 flex items-center justify-center cursor-pointer hover:shadow-lg">
+                    <div class="text-center">
+                        <div class="text-yellow-500 text-3xl mb-2">
+                            <i class="fas fa-wallet"></i> <!-- Example Icon -->
+                        </div>
+                        <span class="font-medium text-gray-800">Load Wallet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Card Container -->
+        <div id="createCardContainer" style="width: 46%" class="card bg-base-100 shadow-lg p-6">
+            <h2 class="card-title text-xl font-semibold mb-4">Create a Card</h2>
+            <p class="text-gray-600 mb-6">Design and apply for a new debit or credit card directly from the app.</p>
+            <button class="btn btn-accent" style="width: 41vw">Create Card</button>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+    <p>&copy; 2025 Paisa Banking App</p>
+</footer>
+</body>
+
+</html>
