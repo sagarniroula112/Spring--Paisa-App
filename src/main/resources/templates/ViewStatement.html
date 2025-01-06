@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Statement - Paisa Banking App</title>
+  <!-- Tailwind CSS with Daisy UI -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+<!-- Header -->
+<header class="h-12 shadow-md">
+  <div id="headerContainer" class="flex justify-between items-center px-6 py-3">
+    <h1 class="text-2xl font-bold text-accent">Paisa</h1>
+    <nav>
+      <ul class="flex gap-8 text-lg font-medium">
+        <li>
+          <a href="/dashboard"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="/viewstatement"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            View Statement
+          </a>
+        </li>
+        <li>
+          <a href="#payments"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Payments
+          </a>
+        </li>
+        <li>
+          <a href="#services"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Services
+          </a>
+        </li>
+        <li>
+          <a href="#cards"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Cards
+          </a>
+        </li>
+
+        <li th:unless="${session.activeUser}">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>
+        <li th:unless="${session.activeUser}">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+
+        <li th:if="${session.activeUser}">
+          Welcome, <span th:text="${session.activeUser.username}"></span>
+        </li>
+
+        <li th:if="${session.activeUser}">
+          <a href="/logout"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Log out
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow mt-10 px-8">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">Transaction Statement</h2>
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <!-- Table Head -->
+        <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Sender Account Number</th>
+          <th>Receiver Account Number</th>
+          <th>Amount</th>
+<!--          <th>Date</th>-->
+        </tr>
+        </thead>
+        <!-- Table Body -->
+        <tbody>
+        <tr th:each="transaction : ${transactions}">
+          <td th:text="${transaction.id}"></td>
+          <td th:text="${transaction.senderAccNo}"></td>
+          <td th:text="${transaction.receiverAccNo}"></td>
+          <td th:text="${transaction.amountExchanged}"></td>
+<!--          <td th:text="${#dates.format(transaction.date, 'dd/MM/yyyy HH:mm:ss')}"></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+  <p>&copy; 2025 Paisa Banking App</p>
+</footer>
+</body>
+</html>
