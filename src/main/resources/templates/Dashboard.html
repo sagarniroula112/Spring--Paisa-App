@@ -20,13 +20,13 @@
         <nav>
             <ul class="flex gap-8 text-lg font-medium">
                 <li>
-                    <a href="#dashboard"
+                    <a href="/dashboard"
                        class="text-white hover:text-purple-500 transition-all duration-300">
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="#statements"
+                    <a href="/viewstatement"
                        class="text-white hover:text-purple-500 transition-all duration-300">
                         View Statement
                     </a>
@@ -47,6 +47,24 @@
                     <a href="#cards"
                        class="text-white hover:text-purple-500 transition-all duration-300">
                         Cards
+                    </a>
+                </li>
+
+                <li th:unless="${session.activeUser}">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+                <li th:unless="${session.activeUser}">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+
+                <li th:if="${session.activeUser}">
+                    Welcome, <span th:text="${session.activeUser.username}"></span>
+                </li>
+
+                <li th:if="${session.activeUser}">
+                    <a href="/logout"
+                       class="text-white hover:text-purple-500 transition-all duration-300">
+                        Log out
                     </a>
                 </li>
             </ul>
@@ -82,7 +100,7 @@
         <div id="transferContainer" style="width: 45%" class="card bg-base-100 shadow-lg p-6">
             <h2 class="card-title text-xl font-semibold mb-4">Transfer Funds</h2>
             <p class="text-gray-600">Easily transfer funds to other accounts or pay bills directly from your account.</p>
-            <button class="btn btn-primary mt-4">Make a Transfer</button>
+            <a href="/fundtransfer" style="width: 42%"><button class="btn btn-primary mt-4">Make a Transfer</button></a>
         </div>
     </div>
 
