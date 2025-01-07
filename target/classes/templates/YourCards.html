@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cards - Paisa Banking App</title>
+  <!-- Tailwind CSS with Daisy UI -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+<!-- Header -->
+<th:block th:insert="NavBar.html"></th:block>
+
+<!-- Main Content -->
+<main class="flex-grow mt-16 px-8">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">Your Cards</h2>
+    <p class="text-center text-gray-600 mb-12">View your available cards.</p>
+
+    <!-- Cards Container -->
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+
+      <!-- Iterating over the 'cards' list -->
+      <th:block th:each="card : ${cards}">
+
+        <!-- Card -->
+        <div class="card bg-white shadow-lg p-4 flex flex-col items-center">
+          <div class="text-center">
+            <!-- Card Icon -->
+            <div class="text-blue-500 text-4xl mb-4">
+              <i class="fas fa-credit-card"></i> <!-- Card Icon -->
+            </div>
+            <div class="font-medium text-gray-800 text-lg">
+              <p th:text="${card.type}">Card Type</p> <!-- Display card type (e.g., Debit, Credit, Prepaid) -->
+              <p class="text-xl font-semibold mt-2" th:text="${card.cardNo}">Card Number</p> <!-- Display card number -->
+              <p class="text-sm text-gray-500" th:text="${card.account.getUser().getFirstName()} + ' ' + ${card.account.getUser().getLastName()}">Card Holder Name</p> <!-- Display user name -->
+            </div>
+          </div>
+        </div>
+
+      </th:block>
+    </div>
+  </div>
+</main>
+
+<div class="container mx-auto">
+  <h2 class="text-lg text-center mb-6">Want to request for a card? <a href="/card/request" class="text-purple-500 text-underline">Request here.</a></h2>
+</div>
+
+<!-- Footer -->
+<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+  <p>&copy; 2025 Paisa Banking App</p>
+</footer>
+</body>
+</html>
