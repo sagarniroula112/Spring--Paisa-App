@@ -17,10 +17,10 @@
 <th:block th:insert="NavBar.html"></th:block>
 
 <!-- Main Content -->
-<main class="flex-grow mt-5">
+<main class="flex-grow mt-5 px-4 sm:px-8">
   <div class="mainContainer flex justify-center items-center">
     <!-- Transfer Form -->
-    <div id="transferFormContainer" style="width: 45%" class="card bg-base-100 shadow-lg p-6">
+    <div id="transferFormContainer" class="card bg-base-100 shadow-lg p-6 w-full sm:w-4/5 md:w-3/5 lg:w-2/5">
       <h2 class="card-title text-xl font-semibold mb-4 text-center">Fund Transfer</h2>
       <form method="POST" action="/fundtransfer" class="space-y-5">
         <p class="text-red-600">[[${error}]]</p>

@@ -16,9 +16,6 @@ public class LoginController {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/login")
     private String login() {
         return "LoginForm";
@@ -30,9 +27,9 @@ public class LoginController {
         if (u != null) {
             session.setAttribute("activeUser", u);
             session.setMaxInactiveInterval(300);
-            return "redirect:/dashboard"; // Redirect to the updated /dashboard endpoint
+            return "redirect:/dashboard";
         }
-        return "LoginForm"; // Stay on the login page for invalid credentials
+        return "LoginForm";
     }
 
     @GetMapping("/logout")

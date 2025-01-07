@@ -17,57 +17,40 @@
 <th:block th:insert="NavBar.html"></th:block>
 
 <!-- Main Content -->
-<main class="flex-grow mt-20 px-8">
+<main class="flex-grow mt-16 px-8">
   <div class="container mx-auto">
     <h2 class="text-2xl font-bold text-center mb-6">Your Cards</h2>
-    <p class="text-center text-gray-600 mb-12">Swipe through your available cards.</p>
+    <p class="text-center text-gray-600 mb-12">View your available cards.</p>
 
     <!-- Cards Container -->
-    <div class="flex-col grid grid-cols-3 gap-0 justify-center" style="margin-left: 8vw;">
-      <!-- Card 1 (Debit Card) -->
-      <div class="card bg-blue-100 shadow-lg p-6 flex items-center justify-center" style="width: 75%">
-        <div class="text-center">
-          <div class="text-blue-500 text-4xl mb-4">
-            <i class="fas fa-credit-card"></i> <!-- Debit Card Icon -->
-          </div>
-          <div class="font-medium text-gray-800 text-lg">
-            <p>Visa Debit</p>
-            <p class="text-xl font-semibold mt-2">1234 5678 9876 5432</p>
-            <p class="text-sm text-gray-500">John Doe</p>
-          </div>
-        </div>
-      </div>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
 
-      <!-- Card 2 (Credit Card) -->
-      <div class="card bg-green-100 shadow-lg p-6 flex items-center justify-center" style="width: 75%">
-        <div class="text-center">
-          <div class="text-green-500 text-4xl mb-4">
-            <i class="fas fa-credit-card"></i> <!-- Credit Card Icon -->
-          </div>
-          <div class="font-medium text-gray-800 text-lg">
-            <p>Visa Credit</p>
-            <p class="text-xl font-semibold mt-2">2345 6789 8765 4321</p>
-            <p class="text-sm text-gray-500">Jane Smith</p>
-          </div>
-        </div>
-      </div>
+      <!-- Iterating over the 'cards' list -->
+      <th:block th:each="card : ${cards}">
 
-      <!-- Card 3 (Prepaid Dollar Card) -->
-      <div class="card bg-yellow-100 shadow-lg p-6 flex items-center justify-center" style="width: 75%">
-        <div class="text-center">
-          <div class="text-yellow-500 text-4xl mb-4">
-            <i class="fas fa-credit-card"></i> <!-- Prepaid Dollar Card Icon -->
-          </div>
-          <div class="font-medium text-gray-800 text-lg">
-            <p>Visa Prepaid</p>
-            <p class="text-xl font-semibold mt-2">3456 7890 9876 1234</p>
-            <p class="text-sm text-gray-500">Alice Cooper</p>
+        <!-- Card -->
+        <div class="card bg-white shadow-lg p-4 flex flex-col items-center">
+          <div class="text-center">
+            <!-- Card Icon -->
+            <div class="text-blue-500 text-4xl mb-4">
+              <i class="fas fa-credit-card"></i> <!-- Card Icon -->
+            </div>
+            <div class="font-medium text-gray-800 text-lg">
+              <p th:text="${card.type}">Card Type</p> <!-- Display card type (e.g., Debit, Credit, Prepaid) -->
+              <p class="text-xl font-semibold mt-2" th:text="${card.cardNo}">Card Number</p> <!-- Display card number -->
+              <p class="text-sm text-gray-500" th:text="${card.account.getUser().getFirstName()} + ' ' + ${card.account.getUser().getLastName()}">Card Holder Name</p> <!-- Display user name -->
+            </div>
           </div>
         </div>
-      </div>
+
+      </th:block>
     </div>
   </div>
 </main>
+
+<div class="container mx-auto">
+  <h2 class="text-lg text-center mb-6">Want to request for a card? <a href="/card/request" class="text-purple-500 text-underline">Request here.</a></h2>
+</div>
 
 <!-- Footer -->
 <footer class="p-4 text-center bg-gray-800 text-white mt-auto">
