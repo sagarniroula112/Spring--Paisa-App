@@ -10,7 +10,16 @@ import java.util.List;
 @Table(name="account_table")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "account_id_generator")
+    @TableGenerator(
+            name = "account_id_generator",
+            table = "id_generator",
+            pkColumnName = "gen_name",
+            valueColumnName = "gen_value",
+            pkColumnValue = "account_id",
+            initialValue = 1000,
+            allocationSize = 1
+    )
     private int accountId;
 
     @OneToOne

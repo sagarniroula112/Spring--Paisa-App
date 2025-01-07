@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="h-12 shadow-md">
+  <div id="headerContainer" class="flex justify-between items-center px-6 py-3">
+    <h1 class="text-2xl font-bold text-accent">Paisa</h1>
+    <nav>
+      <ul class="flex gap-8 text-lg font-medium">
+        <li>
+          <a href="/dashboard"
+             th:classappend="${currentUri == '/dashboard' ? 'text-purple-500' : 'text-white'}"
+             class="hover:text-purple-500 transition-all duration-300">
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="/viewstatement"
+             th:classappend="${currentUri == '/viewstatement' ? 'text-purple-500' : 'text-white'}"
+             class="hover:text-purple-500 transition-all duration-300">
+            View Statement
+          </a>
+        </li>
+        <li>
+          <a href="#payments"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Payment Services
+          </a>
+        </li>
+        <li>
+          <a href="/cards"
+             th:classappend="${currentUri == '/cards' ? 'text-purple-500' : 'text-white'}"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Cards
+          </a>
+        </li>
+
+        <li th:unless="${session.activeUser}">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>
+        <li th:unless="${session.activeUser}">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+
+        <li th:if="${session.activeUser}">
+          Welcome, <span th:text="${session.activeUser.username}"></span>
+        </li>
+
+        <li th:if="${session.activeUser}">
+          <a href="/logout"
+             class="text-white hover:text-purple-500 transition-all duration-300">
+            Log out
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+</body>
+</html>

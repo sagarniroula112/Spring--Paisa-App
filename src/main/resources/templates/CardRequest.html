@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Request - Paisa Banking App</title>
+  <!-- Tailwind CSS with Daisy UI -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+<!-- Header -->
+<th:block th:insert="NavBar.html"></th:block>
+
+<!-- Main Content -->
+<main class="flex-grow mt-16 px-8">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">Request a Card</h2>
+    <p class="text-center text-gray-600 mb-20">Select the type of card you want to request.</p>
+
+    <div class="grid grid-cols-3 gap-y-6 gap-0 justify-center">
+      <!-- Debit Card -->
+      <div class="card bg-blue-100 shadow p-6 flex items-center justify-center cursor-pointer hover:shadow-lg transition-all mx-44" style="width: 60%;">
+        <div class="text-center">
+          <div class="text-blue-500 text-4xl mb-4">
+            <i class="fas fa-credit-card"></i> <!-- Debit Card Icon -->
+          </div>
+          <span class="font-medium text-gray-800 text-lg">Debit Card</span>
+        </div>
+      </div>
+
+      <!-- Credit Card -->
+      <div class="card bg-green-100 shadow p-6 flex items-center justify-center cursor-pointer hover:shadow-lg transition-all mx-auto" style="width: 60%;">
+        <div class="text-center">
+          <div class="text-green-500 text-4xl mb-4">
+            <i class="fas fa-dollar-sign"></i> <!-- Credit Card Icon -->
+          </div>
+          <span class="font-medium text-gray-800 text-lg">Credit Card</span>
+        </div>
+      </div>
+
+      <!-- Prepaid Dollar Card -->
+      <div class="card bg-yellow-100 shadow p-6 flex items-center justify-center cursor-pointer hover:shadow-lg transition-all ml-3 mx-0" style="width: 60%;">
+        <div class="text-center">
+          <div class="text-yellow-500 text-4xl mb-4">
+            <i class="fas fa-globe"></i> <!-- Prepaid Dollar Card Icon -->
+          </div>
+          <span class="font-medium text-gray-800 text-lg">Prepaid Dollar Card</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+  <p>&copy; 2025 Paisa Banking App</p>
+</footer>
+
+</body>
+</html>

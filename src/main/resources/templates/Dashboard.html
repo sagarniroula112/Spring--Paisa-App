@@ -14,63 +14,7 @@
 
 <body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
 <!-- Header -->
-<header class="h-12 shadow-md">
-    <div id="headerContainer" class="flex justify-between items-center px-6 py-3">
-        <h1 class="text-2xl font-bold text-accent">Paisa</h1>
-        <nav>
-            <ul class="flex gap-8 text-lg font-medium">
-                <li>
-                    <a href="/dashboard"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="/viewstatement"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        View Statement
-                    </a>
-                </li>
-                <li>
-                    <a href="#payments"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        Payments
-                    </a>
-                </li>
-                <li>
-                    <a href="#services"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        Services
-                    </a>
-                </li>
-                <li>
-                    <a href="#cards"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        Cards
-                    </a>
-                </li>
-
-                <li th:unless="${session.activeUser}">
-                    <a class="nav-link" href="/login">Log In</a>
-                </li>
-                <li th:unless="${session.activeUser}">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-
-                <li th:if="${session.activeUser}">
-                    Welcome, <span th:text="${session.activeUser.username}"></span>
-                </li>
-
-                <li th:if="${session.activeUser}">
-                    <a href="/logout"
-                       class="text-white hover:text-purple-500 transition-all duration-300">
-                        Log out
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <th:block th:insert="NavBar.html"></th:block>
 
 <!-- Main Content -->
 <main class="flex-grow mt-12">
@@ -156,7 +100,7 @@
         <div id="createCardContainer" style="width: 46%" class="card bg-base-100 shadow-lg p-6">
             <h2 class="card-title text-xl font-semibold mb-4">Create a Card</h2>
             <p class="text-gray-600 mb-6">Design and apply for a new debit or credit card directly from the app.</p>
-            <button class="btn btn-accent" style="width: 41vw">Create Card</button>
+            <a href="/cards"><button class="btn btn-accent" style="width: 41vw">Create Card</button></a>
         </div>
     </div>
 </main>

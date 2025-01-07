@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class MainController {
@@ -51,6 +55,7 @@ public class MainController {
             model.addAttribute("accuredInterest", activeUser.getAccount().getAccruedInterest());
             model.addAttribute("interestRate", activeUser.getAccount().getInterestRate());
 
+            model.addAttribute("currentUri", request.getRequestURI());
             return "Dashboard";
         }
 
@@ -103,12 +108,19 @@ public class MainController {
         accountService.updateAccount(senderAccount);
         accountService.updateAccount(receiverAccount);
 
+
+
         // Optionally, save the transaction details
         Transaction transaction = new Transaction();
+
+
         transaction.setAccount(senderAccount);
         transaction.setSenderAccNo(sender.getAccount().getAccountId());
         transaction.setReceiverAccNo(receiverAccNo);
         transaction.setAmountExchanged(amountExchanged);
+        transaction.setDateTime(LocalDateTime.now());
+        transaction.setUpdatedBalanceSender(senderAccount.getBalance());
+        transaction.setUpdatedBalanceReceiver(receiverAccount.getBalance());
 
         transactionService.addTransaction(transaction);
 
@@ -118,15 +130,30 @@ public class MainController {
     }
 
     @GetMapping("/viewstatement")
-    public String viewStatement(Model model, HttpSession session) {
+    public String viewStatement(Model model, HttpSession session, HttpServletRequest request) {
         User activeUser = (User) session.getAttribute("activeUser");
         if (activeUser == null) {
             return "redirect:/login";
         }
 
-        List<Transaction> transactions = transactionRepo.findAllBySenderAccNo(activeUser.getAccount().getAccountId());
-        model.addAttribute("transactions", transactions);
+        List<Transaction> transactionsSender = transactionRepo.findAllBySenderAccNo(activeUser.getAccount().getAccountId());
+        List<Transaction> transactionsReceiver = transactionRepo.findAllByReceiverAccNo(activeUser.getAccount().getAccountId());
+
+        // Combine the lists
+        List<Transaction> allTransactions = Stream.concat(transactionsSender.stream(), transactionsReceiver.stream())
+                .sorted((t1, t2) -> t2.getDateTime().compareTo(t1.getDateTime())) // Descending order
+                .collect(Collectors.toList());
+
+        model.addAttribute("transactions", allTransactions);
+        model.addAttribute("activeUser", activeUser);
+        model.addAttribute("currentUri", request.getRequestURI());
         return "ViewStatement";
+    }
+
+    @GetMapping("/cards")
+    public String cards(Model model, HttpServletRequest request) {
+        model.addAttribute("currentUri", request.getRequestURI());
+        return "YourCards";
     }
 
 

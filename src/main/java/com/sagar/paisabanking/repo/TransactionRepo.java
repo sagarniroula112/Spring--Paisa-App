@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TransactionRepo extends JpaRepository<Transaction, Integer> {
     List<Transaction> findAllBySenderAccNo(int accountId);
+    List<Transaction> findAllByReceiverAccNo(int accountId);
 }
