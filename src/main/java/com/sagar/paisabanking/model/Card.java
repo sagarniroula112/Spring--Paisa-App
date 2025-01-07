@@ -25,4 +25,36 @@ public class Card {
     @ManyToOne
     @JoinColumn(name="account_id")
     private Account account;
+
+    public long getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(long cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public int getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }

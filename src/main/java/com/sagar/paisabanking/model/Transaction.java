@@ -23,4 +23,68 @@ public class Transaction {
     private LocalDateTime dateTime;
     private double updatedBalanceSender;
     private double updatedBalanceReceiver;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public int getSenderAccNo() {
+        return senderAccNo;
+    }
+
+    public void setSenderAccNo(int senderAccNo) {
+        this.senderAccNo = senderAccNo;
+    }
+
+    public int getReceiverAccNo() {
+        return receiverAccNo;
+    }
+
+    public void setReceiverAccNo(int receiverAccNo) {
+        this.receiverAccNo = receiverAccNo;
+    }
+
+    public double getAmountExchanged() {
+        return amountExchanged;
+    }
+
+    public void setAmountExchanged(double amountExchanged) {
+        this.amountExchanged = amountExchanged;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public double getUpdatedBalanceSender() {
+        return updatedBalanceSender;
+    }
+
+    public void setUpdatedBalanceSender(double updatedBalanceSender) {
+        this.updatedBalanceSender = updatedBalanceSender;
+    }
+
+    public double getUpdatedBalanceReceiver() {
+        return updatedBalanceReceiver;
+    }
+
+    public void setUpdatedBalanceReceiver(double updatedBalanceReceiver) {
+        this.updatedBalanceReceiver = updatedBalanceReceiver;
+    }
 }
