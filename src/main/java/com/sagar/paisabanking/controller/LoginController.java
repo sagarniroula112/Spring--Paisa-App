@@ -2,10 +2,10 @@ package com.sagar.paisabanking.controller;
 
 import com.sagar.paisabanking.model.User;
 import com.sagar.paisabanking.repo.UserRepo;
-import com.sagar.paisabanking.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +23,9 @@ public class LoginController {
 
     @PostMapping("/login")
     private String loginPost(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        User u = userRepo.findByUsernameAndPassword(username, password);
+        String pw = DigestUtils.md5DigestAsHex(password.getBytes());
+
+        User u = userRepo.findByUsernameAndPassword(username, pw);
         if (u != null) {
             session.setAttribute("activeUser", u);
             session.setMaxInactiveInterval(300);

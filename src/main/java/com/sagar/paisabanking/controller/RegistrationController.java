@@ -6,6 +6,7 @@ import com.sagar.paisabanking.service.AccountService;
 import com.sagar.paisabanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,8 @@ public class RegistrationController {
     @PostMapping("/register")
     private String registerPost(@ModelAttribute User user) {
         Account account = accountService.addAccount(new Account());
+
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         account.setUser(user);
 
         user.setAccount(account);
