@@ -11,7 +11,6 @@ com\sagar\paisabanking\repo\UserRepo.class
 com\sagar\paisabanking\service\TransactionService.class
 com\sagar\paisabanking\service\AccountService.class
 com\sagar\paisabanking\repo\TransactionRepo.class
-com\sagar\paisabanking\controller\PaymentServicesController.class
 com\sagar\paisabanking\serviceimpl\CardServiceImpl.class
 com\sagar\paisabanking\controller\TransactionController.class
 com\sagar\paisabanking\controller\MainController.class
