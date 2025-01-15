@@ -3,8 +3,10 @@ package com.sagar.paisabanking.controller;
 import com.sagar.paisabanking.model.Account;
 import com.sagar.paisabanking.model.Transaction;
 import com.sagar.paisabanking.model.User;
+import com.sagar.paisabanking.model.Utilpayment;
 import com.sagar.paisabanking.repo.AccountRepo;
 import com.sagar.paisabanking.repo.TransactionRepo;
+import com.sagar.paisabanking.repo.UtilpaymentRepo;
 import com.sagar.paisabanking.service.AccountService;
 import com.sagar.paisabanking.service.TransactionService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +38,8 @@ public class TransactionController {
 
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private UtilpaymentRepo utilpaymentRepo;
 
     @GetMapping("/fundtransfer")
     public String fundTransfer(HttpSession session, Model model) {
@@ -106,12 +110,13 @@ public class TransactionController {
     }
 
     @GetMapping("/viewstatement")
-    public String viewStatement(Model model, HttpSession session, HttpServletRequest request) {
+    public String viewStatement(@RequestParam("statementOption") String statementOption, Model model, HttpSession session, HttpServletRequest request) {
         User activeUser = (User) session.getAttribute("activeUser");
         if (activeUser == null) {
             return "redirect:/login";
         }
 
+        List<Utilpayment> utilpaymentsSender = utilpaymentRepo.findAllBySenderAccNo(activeUser.getAccount().getAccountId());
         List<Transaction> transactionsSender = transactionRepo.findAllBySenderAccNo(activeUser.getAccount().getAccountId());
         List<Transaction> transactionsReceiver = transactionRepo.findAllByReceiverAccNo(activeUser.getAccount().getAccountId());
 
@@ -119,9 +124,20 @@ public class TransactionController {
                 .sorted((t1, t2) -> t2.getDateTime().compareTo(t1.getDateTime())) // Descending order
                 .collect(Collectors.toList());
 
+        List<Utilpayment> allUtils = utilpaymentsSender.stream()
+                .sorted((u1, u2) -> u2.getDateTime().compareTo(u1.getDateTime()))
+                .toList();
+
+        model.addAttribute("utilityPayments", allUtils);
         model.addAttribute("transactions", allTransactions);
         model.addAttribute("activeUser", activeUser);
         model.addAttribute("currentUri", request.getRequestURI());
-        return "ViewStatement";
+
+        if("fundTransfer".equals(statementOption)) {
+            return "ViewFundTransferStatement";
+        }else if("utilityPayment".equals(statementOption)) {
+            return "ViewUtilityStatement";
+        }
+        return "redirect:/dashboard";
     }
 }

@@ -26,6 +26,7 @@ public class Utilpayment {
     private String remarks;
     private String info;
     private String status;
+    private String utilityType;
 //    private double updatedBalanceReceiver;
 
     @Override
@@ -34,7 +35,7 @@ public class Utilpayment {
                 "id=" + id +
                 ", account=" + account +
                 ", senderAccNo=" + senderAccNo +
-                ", receiver=" + receiver +
+                ", receiver='" + receiver + '\'' +
                 ", amountExchanged=" + amountExchanged +
                 ", dateTime=" + dateTime +
                 ", updatedBalanceSender=" + updatedBalanceSender +
@@ -42,7 +43,16 @@ public class Utilpayment {
                 ", remarks='" + remarks + '\'' +
                 ", info='" + info + '\'' +
                 ", status='" + status + '\'' +
+                ", utilityType='" + utilityType + '\'' +
                 '}';
+    }
+
+    public String getUtilityType() {
+        return utilityType;
+    }
+
+    public void setUtilityType(String utilityType) {
+        this.utilityType = utilityType;
     }
 
     public String getRemarks() {

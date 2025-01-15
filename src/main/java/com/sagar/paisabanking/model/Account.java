@@ -39,7 +39,7 @@ public class Account {
 
     public Account() {
         this.type = "savings"; // Setting default type value
-        this.balance = 0.0; // Default balance
+        this.balance = 1000.0; // Default balance
         this.accruedInterest = 0.0; // Default interest
         this.interestRate = 3.75; // Default interest rate
     }
