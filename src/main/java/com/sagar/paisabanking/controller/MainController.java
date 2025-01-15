@@ -24,7 +24,7 @@ public class MainController {
             model.addAttribute("request", request);
             model.addAttribute("username", activeUser.getUsername());
             model.addAttribute("balance", activeUser.getAccount().getBalance());
-            model.addAttribute("accuredInterest", activeUser.getAccount().getAccruedInterest());
+            model.addAttribute("accruedInterest", activeUser.getAccount().getAccruedInterest());
             model.addAttribute("interestRate", activeUser.getAccount().getInterestRate());
 
             model.addAttribute("currentUri", request.getRequestURI());

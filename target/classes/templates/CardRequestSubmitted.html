@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Request Submitted - Paisa Banking App</title>
+    <!-- Tailwind CSS with Daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+<!-- Header -->
+<th:block th:insert="NavBar.html"></th:block>
+
+<!-- Main Content -->
+<main class="flex-grow mt-20 px-8">
+    <div class="container mx-auto text-center">
+        <h2 class="text-2xl font-bold text-green-500 mb-6">Thank You for Your Request!</h2>
+        <p class="text-lg text-gray-600 mb-4">We have received your card request and will get in touch with you soon.</p>
+
+        <!-- Success Tick Icon -->
+        <div class="text-green-500 text-6xl mb-6">
+            <i class="fas fa-check-circle"></i> <!-- Tick icon -->
+        </div>
+
+        <p class="text-sm text-gray-500">If you have any questions, feel free to contact us.</p>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+    <p>&copy; 2025 Paisa Banking App</p>
+</footer>
+
+</body>
+</html>
