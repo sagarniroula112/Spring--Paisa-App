@@ -1,4 +1,6 @@
+com\sagar\paisabanking\repo\UtilpaymentRepo.class
 com\sagar\paisabanking\service\CardService.class
+com\sagar\paisabanking\model\Utilpayment.class
 com\sagar\paisabanking\serviceimpl\UserServiceImpl.class
 com\sagar\paisabanking\controller\CardController.class
 com\sagar\paisabanking\model\Card.class
@@ -14,6 +16,7 @@ com\sagar\paisabanking\serviceimpl\CardServiceImpl.class
 com\sagar\paisabanking\controller\TransactionController.class
 com\sagar\paisabanking\controller\MainController.class
 com\sagar\paisabanking\controller\RegistrationController.class
+com\sagar\paisabanking\model\Cardrequest.class
 com\sagar\paisabanking\model\User.class
 com\sagar\paisabanking\PaisabankingApplication.class
 com\sagar\paisabanking\model\Transaction.class

@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Statement - Paisa Banking App</title>
-  <!-- Tailwind CSS with Daisy UI -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Statement - Paisa Banking App</title>
+    <!-- Tailwind CSS with Daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
-<!-- Header -->
-<header class="h-16 shadow-md fixed top-0 left-0 w-full z-20">
-  <th:block th:insert="NavBar.html"></th:block>
-</header>
+  <body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+    <!-- Header -->
+    <header class="h-16 shadow-md fixed top-0 left-0 w-full z-20">
+      <th:block th:insert="NavBar.html"></th:block>
+    </header>
 
-<!-- Main Content -->
-<main class="flex-grow pt-20 px-8 mt-10"> <!-- Adjusted padding to account for fixed navbar -->
-  <div class="container mx-auto">
-    <!-- Utility Payment Table -->
-    <h2 class="text-2xl font-bold text-center mb-6">Utility Payment Statement</h2>
-    <div class="overflow-x-auto">
-      <table class="table table-zebra w-full">
-        <!-- Table Head -->
-        <thead>
-        <tr>
-          <th>Payment ID</th>
-          <th>Timestamp</th>
-          <th>Utility Type</th>
-          <th>Sender Account</th>
-          <th>Receiver</th>
-          <th>Remarks</th>
-          <th>Amount</th>
-          <th>Updated Balance</th>
-        </tr>
-        </thead>
-        <!-- Table Body -->
-        <tbody>
-        <tr th:each="payment : ${utilityPayments}">
-          <td th:text="${payment.id}"></td>
-          <td th:text="${payment.dateTime}"></td>
-          <td th:text="${payment.utilityType}"></td>
-          <td th:text="${payment.senderAccNo}"></td>
-          <td th:text="${payment.receiver}"></td>
-          <td th:text="${payment.remarks}"></td>
-          <td th:text="'Rs. '+ ${payment.amountExchanged}"></td>
-          <td th:text="'Rs. '+ ${payment.updatedBalanceSender}"></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Main Content -->
+    <main class="flex-grow pt-20 px-8 mt-10">
+      <!-- Adjusted padding to account for fixed navbar -->
+      <div class="container mx-auto">
+        <!-- Utility Payment Table -->
+        <h2 class="text-2xl font-bold text-center mb-6">
+          Utility Payment Statement
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra w-full">
+            <!-- Table Head -->
+            <thead>
+              <tr>
+                <th style="position: unset">Payment ID</th>
+                <th>Timestamp</th>
+                <th>Utility Type</th>
+                <th>Sender Account</th>
+                <th>Receiver</th>
+                <th>Remarks</th>
+                <th>Amount</th>
+                <th>Updated Balance</th>
+              </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+              <tr th:each="payment : ${utilityPayments}">
+                <td th:text="${payment.id}"></td>
+                <td th:text="${payment.dateTime}"></td>
+                <td th:text="${payment.utilityType}"></td>
+                <td th:text="${payment.senderAccNo}"></td>
+                <td th:text="${payment.receiver}"></td>
+                <td th:text="${payment.remarks}"></td>
+                <td th:text="'Rs. '+ ${payment.amountExchanged}"></td>
+                <td th:text="'Rs. '+ ${payment.updatedBalanceSender}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
 
-  </div>
-</main>
-
-<!-- Footer -->
-<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
-  <p>&copy; 2025 Paisa Banking App</p>
-</footer>
-</body>
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+      <p>&copy; 2025 Paisa Banking App</p>
+    </footer>
+  </body>
 </html>
