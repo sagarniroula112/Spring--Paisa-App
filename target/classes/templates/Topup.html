@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Up - Paisa Banking App</title>
+    <!-- Tailwind CSS with Daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+    <!-- Header -->
+    <th:block th:insert="NavBar.html"></th:block>
+
+    <!-- Main Content -->
+    <main class="flex-grow mt-20 px-4 sm:px-8">
+      <div class="container mx-auto">
+        <h2 class="text-2xl text-white font-bold text-center mb-6">
+          Top Up Your Mobile
+        </h2>
+        <p class="text-center text-gray-400 mb-8">
+          Enter your details below to proceed with the top-up.
+        </p>
+
+        <form
+          class="max-w-lg mx-auto p-6 shadow-md rounded"
+          method="post"
+          action="/services/topup"
+        >
+          <!-- Area Code and Phone Number -->
+          <div class="mb-6">
+            <label for="phone" class="block text-white font-medium mb-2"
+              >Phone Number</label
+            >
+            <div class="flex">
+              <select
+                id="area-code"
+                name="area-code"
+                class="border border-gray-300 rounded-l px-4 py-2 bg-gray-50"
+              >
+                <option value="+977" selected>+977</option>
+              </select>
+              <input
+                id="phone"
+                name="phone"
+                type="text"
+                class="flex-grow border border-gray-300 rounded-r px-4 py-2"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Amount -->
+          <div class="mb-6">
+            <label for="amount" class="block text-white font-medium mb-2"
+              >Amount</label
+            >
+            <input
+              id="amount"
+              name="amount"
+              type="number"
+              min="1"
+              step="1"
+              class="w-full border border-gray-300 rounded px-4 py-2"
+              placeholder="Enter amount to top up"
+              required
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-blue-500 text-white font-medium px-6 py-2 rounded hover:bg-blue-600 transition-all"
+            >
+              Top Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+      <p>&copy; 2025 Paisa Banking App</p>
+    </footer>
+  </body>
+</html>

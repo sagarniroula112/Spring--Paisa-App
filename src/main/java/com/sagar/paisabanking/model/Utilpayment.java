@@ -93,11 +93,11 @@ public class Utilpayment {
         this.senderAccNo = senderAccNo;
     }
 
-    public int getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(int receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 
