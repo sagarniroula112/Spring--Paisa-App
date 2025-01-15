@@ -58,6 +58,11 @@ public class PaymentServicesController {
     public String postTopUp(@RequestParam String phone, @RequestParam int amount, Model model, HttpSession session) {
         User currentUser = (User)session.getAttribute("activeUser");
 
+        if (currentUser.getAccount().getBalance() < amount) {
+            model.addAttribute("error", "Insufficient funds for the transaction.");
+            return "Topup";
+        }
+
         String receiver;
         if (phone.startsWith("974") || phone.startsWith("986") || phone.startsWith("984") || phone.startsWith("985")) {
             receiver = "NTC";
@@ -91,13 +96,18 @@ public class PaymentServicesController {
         currentUser.getAccount().setBalance(acc.getBalance());
         session.setAttribute("activeUser", currentUser);
 
-        model.addAttribute("topupSuccess", "Top up successful. Your balance is deducted.");
-        return "redirect:/services/topup";
+        model.addAttribute("paySuccess", "Top up successful. Your balance is deducted.");
+        return "PaymentServices";
     }
 
     @PostMapping("/services/payelectricity")
     public String postElectricity(@RequestParam String subscriberNo, @RequestParam int amount, Model model, HttpSession session) {
         User currentUser = (User)session.getAttribute("activeUser");
+
+        if (currentUser.getAccount().getBalance() < amount) {
+            model.addAttribute("error", "Insufficient funds for the transaction.");
+            return "PayElectricity";
+        }
 
         Utilpayment utilpayment = new Utilpayment();
         utilpayment.setAccount(currentUser.getAccount());
@@ -123,12 +133,17 @@ public class PaymentServicesController {
         session.setAttribute("activeUser", currentUser);
 
         model.addAttribute("paySuccess", "Electricity bill payment successful. Your balance is deducted.");
-        return "redirect:/paymentServices";
+        return "PaymentServices";
     }
 
     @PostMapping("/services/paywater")
     public String postWater(@RequestParam String subscriberNo, @RequestParam int amount, @RequestParam String receiver, Model model, HttpSession session) {
         User currentUser = (User)session.getAttribute("activeUser");
+
+        if (currentUser.getAccount().getBalance() < amount) {
+            model.addAttribute("error", "Insufficient funds for the transaction.");
+            return "PayWater";
+        }
 
         Utilpayment utilpayment = new Utilpayment();
         utilpayment.setAccount(currentUser.getAccount());
@@ -154,12 +169,17 @@ public class PaymentServicesController {
         session.setAttribute("activeUser", currentUser);
 
         model.addAttribute("paySuccess", "Water bill payment successful. Your balance is deducted.");
-        return "redirect:/paymentServices";
+        return "PaymentServices";
     }
 
     @PostMapping("/services/paywallet")
     public String postWallet(@RequestParam String phone, @RequestParam int amount, @RequestParam String receiver, Model model, HttpSession session) {
         User currentUser = (User)session.getAttribute("activeUser");
+
+        if (currentUser.getAccount().getBalance() < amount) {
+            model.addAttribute("error", "Insufficient funds for the transaction.");
+            return "PayWallet";
+        }
 
         Utilpayment utilpayment = new Utilpayment();
         utilpayment.setAccount(currentUser.getAccount());
@@ -185,7 +205,7 @@ public class PaymentServicesController {
         session.setAttribute("activeUser", currentUser);
 
         model.addAttribute("paySuccess", "Water bill payment successful. Your balance is deducted.");
-        return "redirect:/paymentServices";
+        return "PaymentServices";
     }
     
 }

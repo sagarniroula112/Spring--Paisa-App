@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pay Electricity Bill - Paisa Banking App</title>
     <!-- Tailwind CSS with Daisy UI -->
     <link
-            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
     />
     <link
-            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
+      rel="stylesheet"
     />
     <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
     />
     <!-- Font Awesome Icons -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
     />
-</head>
+  </head>
 
-<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
-<!-- Header -->
-<th:block th:insert="NavBar.html"></th:block>
+  <body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+    <!-- Header -->
+    <th:block th:insert="NavBar.html"></th:block>
 
-<!-- Main Content -->
-<main class="flex-grow mt-20 px-4 sm:px-8">
-    <div class="container mx-auto">
+    <!-- Main Content -->
+    <main class="flex-grow mt-20 px-4 sm:px-8">
+      <div class="container mx-auto">
         <h2 class="text-2xl text-white font-bold text-center mb-6">
-            Pay Electricity Bill
+          Pay Electricity Bill
         </h2>
         <p class="text-center text-gray-400 mb-8">
-            Enter your details below to pay your electricity bill.
+          Enter your details below to pay your electricity bill.
+        </p>
+
+        <p class="text-red-500 font-bold" style="text-align: center">
+          [[${error}]]
         </p>
 
         <form
-                class="max-w-lg mx-auto p-6 shadow-md rounded"
-                method="post"
-                action="/services/payelectricity"
+          class="max-w-lg mx-auto p-6 shadow-md rounded"
+          method="post"
+          action="/services/payelectricity"
         >
-            <!-- Subscriber Number -->
-            <div class="mb-6">
-                <label
-                        for="subscriber-number"
-                        class="block text-white font-medium mb-2"
-                >Subscriber Number</label
-                >
-                <input
-                        id="subscriber-number"
-                        name="subscriberNo"
-                        type="text"
-                        class="w-full border border-gray-300 rounded px-4 py-2"
-                        placeholder="Enter your subscriber number"
-                        required
-                />
-            </div>
+          <!-- Subscriber Number -->
+          <div class="mb-6">
+            <label
+              for="subscriber-number"
+              class="block text-white font-medium mb-2"
+              >Subscriber Number</label
+            >
+            <input
+              id="subscriber-number"
+              name="subscriberNo"
+              type="text"
+              class="w-full border border-gray-300 rounded px-4 py-2"
+              placeholder="Enter your subscriber number"
+              required
+            />
+          </div>
 
-            <!-- Amount -->
-            <div class="mb-6">
-                <label for="amount" class="block text-white font-medium mb-2"
-                >Amount</label
-                >
-                <input
-                        id="amount"
-                        name="amount"
-                        type="number"
-                        min="1"
-                        step="1"
-                        class="w-full border border-gray-300 rounded px-4 py-2"
-                        placeholder="Enter the amount"
-                        required
-                />
-            </div>
+          <!-- Amount -->
+          <div class="mb-6">
+            <label for="amount" class="block text-white font-medium mb-2"
+              >Amount</label
+            >
+            <input
+              id="amount"
+              name="amount"
+              type="number"
+              min="1"
+              step="1"
+              class="w-full border border-gray-300 rounded px-4 py-2"
+              placeholder="Enter the amount"
+              required
+            />
+          </div>
 
-            <!-- Submit Button -->
-            <div class="text-center">
-                <button
-                        type="submit"
-                        class="bg-blue-500 text-white font-medium px-6 py-2 rounded hover:bg-blue-600 transition-all"
-                >
-                    Pay Bill
-                </button>
-            </div>
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-blue-500 text-white font-medium px-6 py-2 rounded hover:bg-blue-600 transition-all"
+            >
+              Pay Bill
+            </button>
+          </div>
         </form>
-    </div>
-</main>
+      </div>
+    </main>
 
-<!-- Footer -->
-<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
-    <p>&copy; 2025 Paisa Banking App</p>
-</footer>
-</body>
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+      <p>&copy; 2025 Paisa Banking App</p>
+    </footer>
+  </body>
 </html>

@@ -1,122 +1,122 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pay Wallet - Paisa Banking App</title>
     <!-- Tailwind CSS with Daisy UI -->
     <link
-            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
     />
     <link
-            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css"
+      rel="stylesheet"
     />
     <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
     />
     <!-- Font Awesome Icons -->
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
     />
-</head>
+  </head>
 
-<body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
-<!-- Header -->
-<th:block th:insert="NavBar.html"></th:block>
+  <body class="min-h-screen flex flex-col" style="font-family: 'Poppins'">
+    <!-- Header -->
+    <th:block th:insert="NavBar.html"></th:block>
 
-<!-- Main Content -->
-<main class="flex-grow mt-12 px-4 sm:px-8">
-    <div class="container mx-auto">
+    <!-- Main Content -->
+    <main class="flex-grow mt-12 px-4 sm:px-8">
+      <div class="container mx-auto">
         <h2 class="text-2xl text-white font-bold text-center mb-6">
-            Pay Wallet
+          Pay Wallet
         </h2>
         <p class="text-center text-gray-400 mb-8">
-            Enter your details below to pay using your preferred wallet.
+          Enter your details below to pay using your preferred wallet.
+        </p>
+
+        <p class="text-red-500 font-bold" style="text-align: center">
+          [[${error}]]
         </p>
 
         <form
-                class="max-w-lg mx-auto p-6 shadow-md rounded"
-                method="post"
-                action="/services/paywallet"
+          class="max-w-lg mx-auto p-6 shadow-md rounded"
+          method="post"
+          action="/services/paywallet"
         >
-            <!-- Wallet Options -->
-            <div class="mb-6">
-                <label
-                        for="wallet"
-                        class="block text-white font-medium mb-2"
-                >Wallet</label
-                >
-                <select
-                        id="wallet"
-                        name="receiver"
-                        class="w-full border border-gray-300 rounded px-4 py-2 bg-gray-50"
-                        required
-                >
-                    <option value="" disabled selected>Select wallet</option>
-                    <option value="Esewa">Esewa</option>
-                    <option value="Khalti">Khalti</option>
-                    <option value="IME Pay">IME Pay</option>
-                </select>
-            </div>
+          <!-- Wallet Options -->
+          <div class="mb-6">
+            <label for="wallet" class="block text-white font-medium mb-2"
+              >Wallet</label
+            >
+            <select
+              id="wallet"
+              name="receiver"
+              class="w-full border border-gray-300 rounded px-4 py-2 bg-gray-50"
+              required
+            >
+              <option value="" disabled selected>Select wallet</option>
+              <option value="Esewa">Esewa</option>
+              <option value="Khalti">Khalti</option>
+              <option value="IME Pay">IME Pay</option>
+            </select>
+          </div>
 
-            <!-- Phone Number -->
-            <div class="mb-6">
-                <label
-                        for="phone-number"
-                        class="block text-white font-medium mb-2"
-                >Phone Number</label
-                >
-                <input
-                        id="phone-number"
-                        name="phone"
-                        type="tel"
-                        pattern="[0-9]{10}"
-                        class="w-full border border-gray-300 rounded px-4 py-2"
-                        placeholder="Enter your phone number"
-                        required
-                />
-                <p class="text-sm text-gray-400 mt-1">
-                    Format: 10-digit number (e.g., 9841234567)
-                </p>
-            </div>
+          <!-- Phone Number -->
+          <div class="mb-6">
+            <label for="phone-number" class="block text-white font-medium mb-2"
+              >Phone Number</label
+            >
+            <input
+              id="phone-number"
+              name="phone"
+              type="tel"
+              pattern="[0-9]{10}"
+              class="w-full border border-gray-300 rounded px-4 py-2"
+              placeholder="Enter your phone number"
+              required
+            />
+            <p class="text-sm text-gray-400 mt-1">
+              Format: 10-digit number (e.g., 9841234567)
+            </p>
+          </div>
 
-            <!-- Amount -->
-            <div class="mb-6">
-                <label for="amount" class="block text-white font-medium mb-2"
-                >Amount</label
-                >
-                <input
-                        id="amount"
-                        name="amount"
-                        type="number"
-                        min="1"
-                        step="1"
-                        class="w-full border border-gray-300 rounded px-4 py-2"
-                        placeholder="Enter the amount"
-                        required
-                />
-            </div>
+          <!-- Amount -->
+          <div class="mb-6">
+            <label for="amount" class="block text-white font-medium mb-2"
+              >Amount</label
+            >
+            <input
+              id="amount"
+              name="amount"
+              type="number"
+              min="1"
+              step="1"
+              class="w-full border border-gray-300 rounded px-4 py-2"
+              placeholder="Enter the amount"
+              required
+            />
+          </div>
 
-            <!-- Submit Button -->
-            <div class="text-center">
-                <button
-                        type="submit"
-                        class="bg-blue-500 text-white font-medium px-6 py-2 rounded hover:bg-blue-600 transition-all"
-                >
-                    Pay Bill
-                </button>
-            </div>
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-blue-500 text-white font-medium px-6 py-2 rounded hover:bg-blue-600 transition-all"
+            >
+              Pay Bill
+            </button>
+          </div>
         </form>
-    </div>
-</main>
+      </div>
+    </main>
 
-<!-- Footer -->
-<footer class="p-4 text-center bg-gray-800 text-white mt-auto">
-    <p>&copy; 2025 Paisa Banking App</p>
-</footer>
-</body>
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-800 text-white mt-auto">
+      <p>&copy; 2025 Paisa Banking App</p>
+    </footer>
+  </body>
 </html>
