@@ -103,6 +103,8 @@ public class TransactionController {
             transactionService.addTransaction(transaction);
 
             model.addAttribute("success", "Funds transferred successfully!");
+
+            activeUser.getAccount().setBalance(transaction.getUpdatedBalanceSender());
             return "redirect:/dashboard";
         }
 
