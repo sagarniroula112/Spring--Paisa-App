@@ -1,5 +1,6 @@
 # Paisa: Banking/Wallet App
 ## Hosted on render at: https://spring-paisa-app.onrender.com
+### This initially takes 50 seconds or more to spin up at first visit due to render.com policies.
 
 # Screenshots:
 ![image](https://github.com/user-attachments/assets/c71541f1-2028-4159-8dfc-653c26b835e2)
